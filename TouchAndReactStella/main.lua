@@ -28,12 +28,13 @@ textObject.y = display.contentHeight/3
 textObject:setTextColor (1, 1, 0)
 textObject.isVisible = false
 
-
+-- create checkmark to appear when clicked on blue button.
 local check = display.newImageRect("Images/checkmark.png", 198, 108)
 check.x = 520
 check.y = 550
 check.isVisible = false
 
+-- create sound to appear when blue button is clicked.
 local correctSound = audio.loadSound("Sounds/Correct Answer Sound Effect.mp3")
 
 -- Function: BlueButtonListener
