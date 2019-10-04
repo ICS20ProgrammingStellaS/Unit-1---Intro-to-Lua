@@ -25,6 +25,8 @@ local randomNumber2
 local userAnswer
 local correctAnswer
 local incorrectAnswer
+local points = 0
+local pointsText
 
 ---------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -104,6 +106,9 @@ numericField.inputType = "number"
 
 -- add the event listener for the numeric field
 numericField:addEventListener( "userInput", NumericFieldListener)
+
+-- display the amount of points as a text object
+pointsText = display.newText("Points = " .. points, display.contentWidth/4)
 
 --------------------------------------------------------------------------------------------
 -- FUNCTION CALLS
