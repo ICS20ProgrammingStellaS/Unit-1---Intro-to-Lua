@@ -25,8 +25,12 @@ local randomNumber2
 local userAnswer
 local correctAnswer
 local incorrectAnswer
-local points = 0
-local pointsText
+local correctPoints = 0
+local correctPointsText
+local incorrectPoints = 0
+local incorrectPointsText
+local lostGame
+local wonGame 
 
 ---------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -70,14 +74,41 @@ local function NumericFieldListener( event )
 		if (userAnswer == correctAnswer) then 
 			correctObject.isVisible = true
 			timer.performWithDelay(2000, HideCorrect)
+			-- give a point if the user gets the correct answer
+			correctPoints = correctPoints + 1
+
+			-- update it in the display object
+			correctPointsText.text = "Right Points = " .. correctPoints
+
 		else 
 			incorrectObject.isVisible = true
 			timer.performWithDelay(2000, HideIncorrect)
+			-- give a point if the user gets the incorrect answer
+			incorrectPoints = incorrectPoints + 1
 
+			-- update it in the display object
+			incorrectPointsText.text = "Wrong Points = " .. incorrectPoints
 		end
 		-- clear text field
 		event.target.text = ""
 
+		-- 
+		if (incorrectPoints == 3) then
+			incorrectObject.isVisible = false
+
+			-- add text that say end game
+			display.lostGame = display.newText("Sorry, You lost!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
+    		display.lostGame:setTextColor(155/255, 42/255, 198/255)	
+
+    	elseif (correctPoints == 5) then
+			correctObject.isVisible = false
+
+			-- add text that say end game
+			display.wonGame = display.newText("Yay, you won!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
+    		display.wonGame:setTextColor(155/255, 42/255, 198/255)	
+
+
+		end
 	end
 end
 
@@ -108,7 +139,10 @@ numericField.inputType = "number"
 numericField:addEventListener( "userInput", NumericFieldListener)
 
 -- display the amount of points as a text object
-pointsText = display.newText("Points = " .. points, display.contentWidth/4)
+correctPointsText = display.newText("Right Points = " .. correctPoints, 200, 200, nil, 50)
+
+-- display the amount of points as a text object
+incorrectPointsText = display.newText("Wrong Points = " .. incorrectPoints, 800, 200, nil, 50)
 
 --------------------------------------------------------------------------------------------
 -- FUNCTION CALLS
