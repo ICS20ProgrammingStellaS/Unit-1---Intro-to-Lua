@@ -97,17 +97,27 @@ local function NumericFieldListener( event )
 			incorrectObject.isVisible = false
 
 			-- add text that say end game
-			display.lostGame = display.newText("Sorry, You lost!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
-    		display.lostGame:setTextColor(155/255, 42/255, 198/255)	
+			display.lostGame = display.newText("Sorry, You lost!", display.contentWidth/2, display.contentHeight/2, nil, 75)
+    		display.lostGame:setTextColor(255/255, 102/255, 102/255)	
+    		incorrectPointsText.isVisible = false
+    		correctPointsText.isVisible = false
+    		correctObject.isVisible = false
+    		incorrectObject.isVisible = false
+    		questionObject.isVisible = false
+    		numericField.isVisible = false
 
     	elseif (correctPoints == 5) then
 			correctObject.isVisible = false
 
 			-- add text that say end game
-			display.wonGame = display.newText("Yay, you won!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
-    		display.wonGame:setTextColor(155/255, 42/255, 198/255)	
-
-
+			display.wonGame = display.newText("Yay, you won!", display.contentWidth/2, display.contentHeight/2, nil, 75)
+    		display.wonGame:setTextColor(255/255, 102/255, 102/255)	
+    		incorrectPointsText.isVisible = false
+    		correctPointsText.isVisible = false
+    		correctObject.isVisible = false
+    		incorrectObject.isVisible = false
+    		questionObject.isVisible = false
+    		numericField.isVisible = false 
 		end
 	end
 end
@@ -140,10 +150,11 @@ numericField:addEventListener( "userInput", NumericFieldListener)
 
 -- display the amount of points as a text object
 correctPointsText = display.newText("Right Points = " .. correctPoints, 200, 200, nil, 50)
+correctPointsText:setTextColor(178/255, 102/255, 255/255)
 
 -- display the amount of points as a text object
 incorrectPointsText = display.newText("Wrong Points = " .. incorrectPoints, 800, 200, nil, 50)
-
+incorrectPointsText:setTextColor(178/255, 102/255, 255/255)
 --------------------------------------------------------------------------------------------
 -- FUNCTION CALLS
 --------------------------------------------------------------------------------------------
