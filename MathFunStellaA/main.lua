@@ -1,8 +1,7 @@
--- Title: NumericTextFields
+-- Title: MathFun
 -- Name: Stella Armstrong
--- Course: ICS2O
--- This program displays a math question and asks the user to answer in a numeric textfeild.
--- terminal
+-- Course: ICS20
+-- This program 
 ---------------------------------------------------------------------------------------------
 
 -- hide the status bar
@@ -32,22 +31,59 @@ local incorrectPointsText
 local lostGame
 local wonGame 
 local incorrectPointsObject
+local question1
+local randomOperator
 
 ---------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 ---------------------------------------------------------------------------------------------
 
 local function AskQuestion()
-	-- generate 2 random numbers between a max. and a min. number
-	randomNumber1 = math.random(0, 10)
-	randomNumber2 = math.random(0, 10)
+	-- generate a random number between 1 and 2
+	-- *** MAKE SURE TO DECLARE THIS VARIABLE ABOVE
+	randomOperator = math.random(1,4)
 
-	correctAnswer = randomNumber1 + randomNumber2
+	-- generate 2 random numbers
+	randomNumber1 = math.random(2, 12)
+	randomNumber2 = math.random(2, 12)
 
-	-- create question in text object 
-	questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
+	-- if the random operator is 1, then do addition
+	if (randomOperator == 1) then
 
+		-- calculate the correct answer
+		correctAnswer = randomNumber1 + randomNumber2
+
+		-- create question in text object
+		questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
+
+	-- if the random operator is 2, do subtraction 
+	elseif (randomOperator == 2) then 
+		-- calculate the correct answer
+		correctAnswer = randomNumber1 - randomNumber2
+
+		-- create question in text object
+		questionObject.text = randomNumber1 .. " - " .. randomNumber2 .. " = "
+	
+	-- if the random operator is 3, do multiplication
+	elseif (randomOperator == 3) then
+
+		-- calculate the correct answer
+		correctAnswer = randomNumber1 * randomNumber2
+
+		-- create question in text object
+		questionObject.text = randomNumber1 .. " * " .. randomNumber2 .. " = "
+
+	-- if the random operator is 4, do divistion 
+	elseif (randomOperator == 4) then
+
+		-- calculate the correct answer
+		question1 = randomNumber1 * randomNumber2 / randomNumber1
+
+		-- create question in text object
+		questionObject.text = question1 .. " / " .. randomNumber2 .. " = "
+	end
 end
+
 
 local function HideCorrect()
 	correctObject.isVisible = false
@@ -91,9 +127,9 @@ local function NumericFieldListener( event )
 			incorrectPointsText.text = "Lives = " .. incorrectPoints
 
 			-- display correct answer on screen
-			incorrectPointsObject = display.newText(" The correct answer is " .. correctAnswer .. ".", display.contentWidth/2, display.contentHeight/3*2.5, nil, 50)
-			incorrectPointsObject:setTextColor (0, 0, 0)
-			incorrectPointsObject.isVisible = true
+			incorrectObject = display.newText(" The correct answer is " .. correctAnswer .. ".", display.contentWidth/2, display.contentHeight/3*2.5, nil, 50)
+			incorrectObject:setTextColor (0, 0, 0)
+			incorrectObject.isVisible = true
 
 		end
 		-- clear text field
