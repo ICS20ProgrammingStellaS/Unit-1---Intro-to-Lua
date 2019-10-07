@@ -19,18 +19,21 @@ local questionObject
 local correctObject
 local incorrectObject
 local numericField
+
 local randomNumber1
 local randomNumber2
 local userAnswer
 local correctAnswer
-local incorrectAnswer
+
 local correctPoints = 0
 local correctPointsText
+
 local incorrectPoints = 3
 local incorrectPointsText
+
 local lostGame
 local wonGame 
-local incorrectPointsObject
+
 local question1
 local randomOperator
 local tempRandomNumber
@@ -45,8 +48,8 @@ local function AskQuestion()
 	randomOperator = math.random(1,4)
 
 	-- generate 2 random numbers
-	randomNumber1 = math.random(2, 12)
-	randomNumber2 = math.random(2, 12)
+	randomNumber1 = math.random(1, 10)
+	randomNumber2 = math.random(1, 10)
 
 	-- if the random operator is 1, then do addition
 	if (randomOperator == 1) then
@@ -57,13 +60,17 @@ local function AskQuestion()
 		-- create question in text object
 		questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
 
-	elseif (randomNumber1 < randomNumber2) then
-		tempRandomNumber = randomNumber1
-		randomNumber1 = randomNumber2
-		randomNumber2 = tempRandomNumber
-
-	-- if the random operator is 2, do subtraction 
+		-- if the random operator is 2, do subtraction 
 	elseif (randomOperator == 2) then 
+
+		-- if random number 1 is smaller then random number 2 then swap them, 
+		-- to get a positive answer. 
+		if (randomNumber1 < randomNumber2) then
+			tempRandomNumber = randomNumber1
+			randomNumber1 = randomNumber2
+			randomNumber2 = tempRandomNumber
+		end
+
 		-- calculate the correct answer
 		correctAnswer = randomNumber1 - randomNumber2
 
@@ -125,19 +132,15 @@ local function NumericFieldListener( event )
 
 		else 
 			incorrectObject.isVisible = true
+			incorrectObject.text = " The correct answer is " .. correctAnswer .. "."
 			timer.performWithDelay(2000, HideIncorrect)
 			-- give a point if the user gets the incorrect answer
 			incorrectPoints = incorrectPoints - 1
 
 			-- update it in the display object
 			incorrectPointsText.text = "Lives = " .. incorrectPoints
-
-			-- display correct answer on screen
-			incorrectObject = display.newText(" The correct answer is " .. correctAnswer .. ".", display.contentWidth/2, display.contentHeight/3*2.5, nil, 50)
-			incorrectObject:setTextColor (0, 0, 0)
-			incorrectObject.isVisible = true
-
 		end
+
 		-- clear text field
 		event.target.text = ""
 
@@ -188,7 +191,6 @@ correctObject.isVisible = false
 incorrectObject = display.newText( "Incorrect!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
 incorrectObject:setTextColor(155/255, 42/255, 198/255)
 incorrectObject.isVisible = false
-
 
 -- Create numeric field
 numericField = native.newTextField( display.contentWidth/2, display.contentHeight/2, 150, 80)
