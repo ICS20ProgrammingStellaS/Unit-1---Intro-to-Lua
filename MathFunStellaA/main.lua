@@ -33,6 +33,7 @@ local wonGame
 local incorrectPointsObject
 local question1
 local randomOperator
+local tempRandomNumber
 
 ---------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -55,6 +56,11 @@ local function AskQuestion()
 
 		-- create question in text object
 		questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
+
+	elseif (randomNumber1 < randomNumber2) then
+		tempRandomNumber = randomNumber1
+		randomNumber1 = randomNumber2
+		randomNumber2 = tempRandomNumber
 
 	-- if the random operator is 2, do subtraction 
 	elseif (randomOperator == 2) then 
