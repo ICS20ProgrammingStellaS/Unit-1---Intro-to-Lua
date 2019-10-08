@@ -1,7 +1,10 @@
 -- Title: MathFun
 -- Name: Stella Armstrong
 -- Course: ICS20
--- This program 
+-- This program selects a random operator (*, +, -, /) 
+-- and asks the user a random math question. For addition, subtraction, 
+-- and multiplication, the numbers range between 1 - 10. For division, the
+-- first number ranges between 1 - 12, and the second number ranges between 1 - 12.  
 ---------------------------------------------------------------------------------------------
 
 -- hide the status bar
