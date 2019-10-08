@@ -24,6 +24,7 @@ local randomNumber1
 local randomNumber2
 local userAnswer
 local correctAnswer
+local correctAnswer1
 
 local correctPoints = 0
 local correctPointsText
@@ -90,10 +91,11 @@ local function AskQuestion()
 	elseif (randomOperator == 4) then
 
 		-- calculate the correct answer
-		question1 = randomNumber1 * randomNumber2 / randomNumber1
+		correctAnswer1 = randomNumber1 * randomNumber2
+		correctAnswer = correctAnswer1 / randomNumber2
 
 		-- create question in text object
-		questionObject.text = question1 .. " / " .. randomNumber2 .. " = "
+		questionObject.text = correctAnswer1 .. " / " .. randomNumber2 .. " = "
 	end
 end
 
@@ -132,7 +134,7 @@ local function NumericFieldListener( event )
 
 		else 
 			incorrectObject.isVisible = true
-			incorrectObject.text = " The correct answer is " .. correctAnswer .. "."
+			incorrectObject.text = " Incorect! The correct answer is " .. correctAnswer .. "."
 			timer.performWithDelay(2000, HideIncorrect)
 			-- give a point if the user gets the incorrect answer
 			incorrectPoints = incorrectPoints - 1
