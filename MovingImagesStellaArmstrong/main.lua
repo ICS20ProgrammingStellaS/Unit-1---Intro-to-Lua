@@ -6,6 +6,17 @@
 -- hide the staus bar
 display.setStatusBar(display.HiddenStatusBar)
 
+------------------------------------------------------------------------------------
+-- SOUNDS
+------------------------------------------------------------------------------------
+
+-- add backgroun music
+local backgroundSound = audio.loadSound("Sounds/backgroundSound.mp3")
+local backgroundSoundChannel
+
+audio.play(backgroundSound, {loops = -1})
+backgroundSoundChannel = audio.play(backgroundSound)
+
 -- global variables
 scrollSpeed2 = 4 - 8
 
@@ -13,7 +24,7 @@ scrollSpeed2 = 4 - 8
 local backgroundImage = display.newImageRect("Images/background.png", 2048, 1536)
 
 -- character image with width and height 
-local beetleship = display.newImageRect("Images/beetleship.png", 350, 350)
+local beetleship = display.newImageRect("Images/beetleship.png", 300, 350)
 
 -- set the image to be transparent
 beetleship.alpha = 0
@@ -46,7 +57,7 @@ beetleship:scale(-1, 1)
 scrollSpeed = 5
 
 -- character image with width and height 
-local octopus = display.newImageRect("Images/octopus.png", 200, 200)
+local octopus = display.newImageRect("Images/octopus.png", 100, 100)
 
 -- set the image to be transparent
 octopus.alpha = 0
