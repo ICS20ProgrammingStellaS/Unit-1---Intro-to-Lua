@@ -42,6 +42,9 @@ local question1
 local randomOperator
 local tempRandomNumber
 
+local correctSound = audio.loadSound("Sounds/correctSound.mp3")
+local correctSoundChannel
+
 ---------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 ---------------------------------------------------------------------------------------------
@@ -64,6 +67,9 @@ local function AskQuestion()
 		-- create question in text object
 		questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
 
+		--play the sound on any available channel
+		local correctSoundChannel = audio.play(correctSound)
+
 		-- if the random operator is 2, do subtraction 
 	elseif (randomOperator == 2) then 
 
@@ -81,6 +87,9 @@ local function AskQuestion()
 		-- create question in text object
 		questionObject.text = randomNumber1 .. " - " .. randomNumber2 .. " = "
 	
+		--play the sound on any available channel
+		local correctSoundChannel = audio.play(correctSound)
+
 	-- if the random operator is 3, do multiplication
 	elseif (randomOperator == 3) then
 
@@ -89,6 +98,9 @@ local function AskQuestion()
 
 		-- create question in text object
 		questionObject.text = randomNumber1 .. " * " .. randomNumber2 .. " = "
+
+		--play the sound on any available channel
+		local correctSoundChannel = audio.play(correctSound)
 
 	-- if the random operator is 4, do divistion 
 	elseif (randomOperator == 4) then
@@ -99,6 +111,9 @@ local function AskQuestion()
 
 		-- create question in text object
 		questionObject.text = correctAnswer1 .. " / " .. randomNumber2 .. " = "
+	
+		--play the sound on any available channel
+		local correctSoundChannel = audio.play(correctSound)
 	end
 end
 
