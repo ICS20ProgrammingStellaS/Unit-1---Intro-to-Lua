@@ -45,6 +45,18 @@ local tempRandomNumber
 local correctSound = audio.loadSound("Sounds/correctSound.mp3")
 local correctSoundChannel
 
+-- variables for the timer 
+local totalSeconds = 5
+local secondsLeft = 5
+local clockText
+local countDownTimer 
+
+local lives = 3
+local heart1
+local heart2
+local heart3
+local heart4
+
 ---------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 ---------------------------------------------------------------------------------------------
@@ -105,6 +117,40 @@ local function AskQuestion()
 	end
 end
 
+local function UpdateTime()
+
+	-- decrement the number of seconds
+	secondsLeft = secondsLeft - 1
+
+	-- display the number of seconds left in the clock object
+	clockText.text = secondsLeft
+
+	if (secondsLeft == 0) then 
+		-- reset the number of seconds left
+		secondsLeft = totalSeconds
+		lives = lives - 1
+
+		-- *** IF THERE ARE NO LIVES LEFT, PLAY A LOSE SOUND, SHOW A YOU LOSE IMAGE
+		-- AND CANCEL THE TIMER REMOVE THE THIRD HEART BY MAKING IT INVISIBLE
+		if (lives == 4) then 
+			heart4.isVisible = false 
+		elseif (lives == 3) then
+			heart3.isVisible = false
+		elseif (lives == 2) then 
+			heart2.isVisible = false 
+		elseif (lives == 1) then 
+			heart1.isVisible = false
+		end
+
+		-- *** CALL THE FUNCTION TO ASK A NEW QUESTION 
+	end
+end
+
+-- function the calls the timer 
+local function StartTimer()
+	-- create a countdown timer that loops infinftely
+	countDownTimer = timer.performWithDelay(1000, UpdateTime, 0)
+end
 
 local function HideCorrect()
 	correctObject.isVisible = false
@@ -189,6 +235,9 @@ end
 ---------------------------------------------------------------------------------------------
 -- OBJECT CREATION 
 ---------------------------------------------------------------------------------------------
+
+-- create the lives to display on the screen 
+
 
 -- displays a question and sets the colour
 questionObject = display.newText( "", display.contentWidth/3, display.contentHeight/2, nil, 50)
