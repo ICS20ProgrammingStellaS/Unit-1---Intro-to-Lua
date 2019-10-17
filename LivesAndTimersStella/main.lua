@@ -237,7 +237,21 @@ end
 ---------------------------------------------------------------------------------------------
 
 -- create the lives to display on the screen 
+heart1 = display.newImageRect("Images.xcassets/heart.png", 100, 100)
+heart1.x = display.contentWidth * 7 / 8
+heart1.y = display.contentHeight * 1 / 7 
 
+heart2 = display.newImageRect("Images.xcassets/heart.png", 100, 100)
+heart2.x = display.contentWidth * 6 / 8
+heart2.y = display.contentHeight* 1 / 7 
+
+heart3 = display.newImageRect("Images.xcassets/heart.png", 100, 100)
+heart3.x = display.contentWidth * 5 / 8
+heart3.y = display.contentHeight * 1 / 7
+
+heart4 = display.newImageRect("Images.xcassets/heart.png", 100, 100)
+heart4.x = display.contentWidth * 4 / 8
+heart4.y = display.contentHeight * 1 / 7
 
 -- displays a question and sets the colour
 questionObject = display.newText( "", display.contentWidth/3, display.contentHeight/2, nil, 50)
