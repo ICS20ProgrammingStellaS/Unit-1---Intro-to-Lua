@@ -10,9 +10,9 @@
 display.setStatusBar(display.HiddenStatusBar)
 
 -- add background image with width and height 
-local backgroundImage = display.newImageRect("Images/Pool.jpg", 2048, 1536)
-backgroundImage.x = 500
-backgroundImage.y = 0
+local backgroundImage = display.newImageRect("Images/Pool.jpg", display.contentWidth, display.contentHeight)
+ backgroundImage.x = 510
+ backgroundImage.y = 385
 
 -- load physics
 local physics = require("physics")
@@ -22,14 +22,27 @@ physics.start()
 ----------------------------------------------------------------------------------------------
 -- OBJECTS
 ----------------------------------------------------------------------------------------------
-local divingBoard = display.newImage("Physics/divingBoard.png", 0, 0)
-	divingBoard.x = 500
-	divingBoard.y = 700
 
-	-- change the width to be the same as the screen
-	divingBoard.width = display.contentWidth
+local divingBoard = display.newImage("Images/divingBoard.png", 0, 0)
+	divingBoard.x = 220
+	divingBoard.y = 610
+
+	divingBoard.width = display.contentWidth/4
+	divingBoard.height = display.contentHeight/2
 
 	-- add the physics
 	physics.addBody(divingBoard, "static", {friction=0.5, bounce=0.3})
 
+local slide = display.newImage("Images/slide.png", 0, 0)
+	slide.x = 800
+	slide.y = 380
+
+	slide.width = display.contentWidth/4
+	slide.height = display.contentHeight/2
+
+	-- change the width to be the same as the screen
+	-- divingBoard.width = display.contentWidth
+
+	-- add the physics
+	physics.addBody(slide, "static", {friction=0.5, bounce=0.3})
 	------------------------------------------------------------------------------------
