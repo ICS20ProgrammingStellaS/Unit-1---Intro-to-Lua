@@ -32,7 +32,7 @@ local correctAnswer1
 local correctPoints = 0
 local correctPointsText
 
-local incorrectPoints = 3
+local incorrectPoints = 4
 local incorrectPointsText
 
 local lostGame
@@ -46,8 +46,8 @@ local correctSound = audio.loadSound("Sounds/correctSound.mp3")
 local correctSoundChannel
 
 -- variables for the timer 
-local totalSeconds = 5
-local secondsLeft = 5
+local totalSeconds = 10
+local secondsLeft = 10
 local clockText
 local countDownTimer 
 
@@ -123,14 +123,31 @@ local function UpdateTime()
 	secondsLeft = secondsLeft - 1
 
 	-- display the number of seconds left in the clock object
-	clockText.text = secondsLeft
+	clockText.text = secondsLeft .. ""
 
 	if (secondsLeft == 0) then 
 		-- reset the number of seconds left
 		secondsLeft = totalSeconds
 		lives = lives - 1
 
-		-- *** CALL THE FUNCTION TO ASK A NEW QUESTION 
+		-- *** IF THERE ARE NO LIVES LEFT, PLAY A LOSE SOUND, SHOW A YOU LOSE IMAGE 
+		-- AND CANCLE THE TIMER REMOVE THE THIRD HEART BY MAKING IT INVISIBLE
+
+		if (lives == 3) then
+			heart1.isVisible = false
+		elseif (lives == 2) then
+			heart2.isVisible = false
+		elseif (lives == 1) then
+			heart3.isVisible = false
+		elseif (lives == 0) then
+			heart4.isVisible = false
+	
+
+
+		end
+
+		-- *** CALL THE FUNCTION TO ASK A NEW QUESTION
+
 	end
 end
 
@@ -172,6 +189,8 @@ local function NumericFieldListener( event )
 			-- update it in the display object
 			correctPointsText.text = "Points = " .. correctPoints
 
+			secondsLeft = 10
+
 			--play the sound on any available channel
 			local correctSoundChannel = audio.play(correctSound)
 
@@ -185,18 +204,21 @@ local function NumericFieldListener( event )
 
 			-- update it in the display object
 			incorrectPointsText.text = "Lives = " .. incorrectPoints
+			
+			secondsLeft = 10
 
 
 		-- *** IF THERE ARE NO LIVES LEFT, PLAY A LOSE SOUND, SHOW A YOU LOSE IMAGE
 		-- AND CANCEL THE TIMER REMOVE THE THIRD HEART BY MAKING IT INVISIBLE
-			if (lives == 4) then 
-			heart4.isVisible = false 
-			elseif (lives == 3) then
-			heart3.isVisible = false
+
+			if (lives == 1) then 
+			heart1.isVisible = false
 			elseif (lives == 2) then 
 			heart2.isVisible = false 
-			elseif (lives == 1) then 
-			heart1.isVisible = false
+			elseif (lives == 3) then
+			heart3.isVisible = false
+			elseif (lives == 4) then 
+			heart4.isVisible = false 
 			end
 		end
 
@@ -217,6 +239,11 @@ local function NumericFieldListener( event )
     		incorrectObject.isVisible = false
     		questionObject.isVisible = false
     		numericField.isVisible = false
+    		heart1.isVisible = false
+    		heart2.isVisible = false
+    		heart3.isVisible = false
+    		heart4.isVisible = false 
+    		clockText.isVisible = false
 
     	elseif (correctPoints == 5) then
 			correctObject.isVisible = false
@@ -230,6 +257,11 @@ local function NumericFieldListener( event )
     		incorrectObject.isVisible = false
     		questionObject.isVisible = false
     		numericField.isVisible = false 
+    		heart1.isVisible = false
+    		heart2.isVisible = false
+    		heart3.isVisible = false
+    		heart4.isVisible = false 
+    		clockText.isVisible = false
 		end
 	end
 end
@@ -237,6 +269,8 @@ end
 ---------------------------------------------------------------------------------------------
 -- OBJECT CREATION 
 ---------------------------------------------------------------------------------------------
+
+clockText = display.newText("", 100, 100, nil, 50)
 
 -- create the lives to display on the screen 
 heart1 = display.newImageRect("Images.xcassets/heart.png", 100, 100)
@@ -281,7 +315,7 @@ correctPointsText = display.newText("Points = " .. correctPoints, 200, 200, nil,
 correctPointsText:setTextColor(178/255, 102/255, 255/255)
 
 -- display the amount of points as a text object
-incorrectPointsText = display.newText("Lives = " .. incorrectPoints, 800, 200, nil, 50)
+incorrectPointsText = display.newText(" ", 800, 200, nil, 50)
 incorrectPointsText:setTextColor(178/255, 102/255, 255/255)
 --------------------------------------------------------------------------------------------
 -- FUNCTION CALLS
@@ -289,3 +323,4 @@ incorrectPointsText:setTextColor(178/255, 102/255, 255/255)
 
 -- call the function to ask the question
 AskQuestion()
+StartTimer()
