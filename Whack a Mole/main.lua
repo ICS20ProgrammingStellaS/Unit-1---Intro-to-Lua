@@ -12,7 +12,6 @@ display.setStatusBar(display.HiddenStatusBar)
 -------------------------------------------------------------------------------------------------
 local points = 0
 local pointsText
-local mouseClick
 
 -- creating background
 local bkg = display.newImageRect( "Images/bkg.png", display.contentWidth, display.contentHeight )
@@ -26,15 +25,11 @@ local bkg = display.newImageRect( "Images/bkg.png", display.contentWidth, displa
 -- Creating Mole
 local mole = display.newImage( "Images/mole.png", 0, 0 )
 	-- Setting Position
-	mole.x = display.contentCenterX
-	mole.y = display.contentCenterY
+	mole.x = contentCenterX
+	mole.y = contentCenterY
 
-	-- change width to be half of the size of the screen
-	mole.width = display.contentCenterX/3
-
-	-- change height to be one tenth of the size of the screen 
-	mole.height = display.contentCenterY/3
-
+	mole:scale(0.3, 0.3)
+	
 	mole.isVisible = false
 
 ------------------------------------------------------------------------------------------------
@@ -47,14 +42,14 @@ local function PopUp( )
 
  	-- Choosing Random Position on the screen between 0 and the size of the screen
  	mole.x = math.random( 0, display.contentWidth )
- 	mole.x = math.random( 0, display.contentHeight )
+ 	mole.y = math.random( 0, display.contentHeight )
 
  	-- Making mole visible
  	mole.isVisible = true
 
  	-- add timerWithDelay
  	timer.performWithDelay( 500, Hide)
- end 
+end 
 
 -- This function calls the PopUp function after 3 seconds
 local function PopUpDelay( )
@@ -68,7 +63,7 @@ local function Hide( )
 	mole.isVisible = false
 
 	-- add timerWithDelay
-	timer.performWithDelay( 1000, PopUpDelay)	
+	timer.performWithDelay( 1000, PopUpDelay )	
 end
 
 -- This function starts the game 
@@ -101,4 +96,4 @@ pointsText:setTextColor (0, 0, 0)
 -- function is called
 mole:addEventListener( "touch", Whacked )
 
-GameStart()
+GameStart( )
