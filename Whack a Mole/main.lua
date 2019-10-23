@@ -38,7 +38,7 @@ local mole = display.newImage( "Images/mole.png", 0, 0 )
 
 -- This function makes the mole appear in a random (x,y) position on the screen
 -- before calling the Hide function
-local function PopUp( )
+function PopUp( )
 
  	-- Choosing Random Position on the screen between 0 and the size of the screen
  	mole.x = math.random( 0, display.contentWidth )
@@ -52,12 +52,12 @@ local function PopUp( )
 end 
 
 -- This function calls the PopUp function after 3 seconds
-local function PopUpDelay( )
+function PopUpDelay( )
 	timer.performWithDelay( 1000, PopUp )
 end
 
 -- This function makes the mole invisible and then calls the PopUpDelay functions
-local function Hide( )
+function Hide( )
 
 	-- Changing Visibility
 	mole.isVisible = false
@@ -67,13 +67,13 @@ local function Hide( )
 end
 
 -- This function starts the game 
-local function GameStart( )
+function GameStart( )
 	PopUpDelay( )
 end
 
 -- This function increments the score only if the mole id clicked. It the displays the
 -- new score.
-local function Whacked( event )
+function Whacked( event )
 
 	-- If touch phase just started
 	if (event.phase == "began") then
