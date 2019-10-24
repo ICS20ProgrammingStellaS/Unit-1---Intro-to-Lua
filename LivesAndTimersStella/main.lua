@@ -62,6 +62,7 @@ local heart4
 ---------------------------------------------------------------------------------------------
 
 local function AskQuestion()
+	
 	-- generate a random number between 1 and 2
 	-- *** MAKE SURE TO DECLARE THIS VARIABLE ABOVE
 	randomOperator = math.random(1,4)
@@ -73,47 +74,21 @@ local function AskQuestion()
 	-- if the random operator is 1, then do addition
 	if (randomOperator == 1) then
 
-		-- calculate the correct answer
-		correctAnswer = randomNumber1 + randomNumber2
+	-- calculate the correct answer
+	correctAnswer = randomNumber1 + randomNumber2
 
-		-- create question in text object
-		questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
+	-- create question in text object
+	questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
 
-		-- if the random operator is 2, do subtraction 
+	-- if the random operator is 2, do subtraction 
 	elseif (randomOperator == 2) then 
 
-		-- if random number 1 is smaller then random number 2 then swap them, 
-		-- to get a positive answer. 
-		if (randomNumber1 < randomNumber2) then
-			tempRandomNumber = randomNumber1
-			randomNumber1 = randomNumber2
-			randomNumber2 = tempRandomNumber
-		end
-
-		-- calculate the correct answer
-		correctAnswer = randomNumber1 - randomNumber2
-
-		-- create question in text object
-		questionObject.text = randomNumber1 .. " - " .. randomNumber2 .. " = "
-
-	-- if the random operator is 3, do multiplication
-	elseif (randomOperator == 3) then
-
-		-- calculate the correct answer
-		correctAnswer = randomNumber1 * randomNumber2
-
-		-- create question in text object
-		questionObject.text = randomNumber1 .. " * " .. randomNumber2 .. " = "
-
-	-- if the random operator is 4, do divistion 
-	elseif (randomOperator == 4) then
-
-		-- calculate the correct answer
-		correctAnswer1 = randomNumber1 * randomNumber2
-		correctAnswer = correctAnswer1 / randomNumber2
-
-		-- create question in text object
-		questionObject.text = correctAnswer1 .. " / " .. randomNumber2 .. " = "
+	-- if random number 1 is smaller then random number 2 then swap them, 
+	-- to get a positive answer. 
+	if (randomNumber1 < randomNumber2) then
+	tempRandomNumber = randomNumber1
+	randomNumber1 = randomNumber2
+	randomNumber2 = tempRandomNumber
 	end
 end
 
