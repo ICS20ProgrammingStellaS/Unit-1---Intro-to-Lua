@@ -28,7 +28,6 @@ local incorrectAnswer
 local correctPoints = 0
 local correctPointsText
 local incorrectPoints = 3
-local incorrectPointsText
 local lostGame
 local wonGame 
 local incorrectPointsObject
@@ -81,6 +80,7 @@ local function NumericFieldListener( event )
 			-- update it in the display object
 			correctPointsText.text = "Points = " .. correctPoints
 
+
 		else 
 			incorrectObject.isVisible = true
 			timer.performWithDelay(2000, HideIncorrect)
@@ -89,11 +89,6 @@ local function NumericFieldListener( event )
 
 			-- update it in the display object
 			incorrectPointsText.text = "Lives = " .. incorrectPoints
-
-			-- display correct answer on screen
-			incorrectPointsObject = display.newText(" The correct answer is " .. correctAnswer .. ".", display.contentWidth/2, display.contentHeight/3*2.5, nil, 50)
-			incorrectPointsObject:setTextColor (0, 0, 0)
-			incorrectPointsObject.isVisible = true
 
 		end
 		-- clear text field
@@ -106,8 +101,8 @@ local function NumericFieldListener( event )
 			-- add text that say end game
 			display.lostGame = display.newText("Sorry, you lost!", display.contentWidth/2, display.contentHeight/2, nil, 75)
     		display.lostGame:setTextColor(255/255, 102/255, 102/255)	
-    		incorrectPointsText.isVisible = false
-    		correctPointsText.isVisible = false
+    		incorrectPointsObject.isVisible = false
+    		correctPointsObject.isVisible = false
     		correctObject.isVisible = false
     		incorrectObject.isVisible = false
     		questionObject.isVisible = false
@@ -119,8 +114,8 @@ local function NumericFieldListener( event )
 			-- add text that say end game
 			display.wonGame = display.newText("Yay, you won!", display.contentWidth/2, display.contentHeight/2, nil, 75)
     		display.wonGame:setTextColor(255/255, 102/255, 102/255)	
-    		incorrectPointsText.isVisible = false
-    		correctPointsText.isVisible = false
+    		incorrectPointsObject.isVisible = false
+    		correctPointsObject.isVisible = false
     		correctObject.isVisible = false
     		incorrectObject.isVisible = false
     		questionObject.isVisible = false
@@ -146,7 +141,6 @@ correctObject.isVisible = false
 incorrectObject = display.newText( "Incorrect!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
 incorrectObject:setTextColor(155/255, 42/255, 198/255)
 incorrectObject.isVisible = false
-
 
 -- Create numeric field
 numericField = native.newTextField( display.contentWidth/2, display.contentHeight/2, 150, 80)
