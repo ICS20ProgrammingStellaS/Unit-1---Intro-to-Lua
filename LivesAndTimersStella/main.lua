@@ -1,4 +1,4 @@
--- Title: MathFun
+-- Title: Lives and Timers
 -- Name: Stella Armstrong
 -- Course: ICS20
 -- This program selects a random operator (*, +, -, /) 
@@ -91,6 +91,7 @@ local function AskQuestion()
 	randomNumber2 = tempRandomNumber
 	end
 end
+
 
 local function UpdateTime()
 
