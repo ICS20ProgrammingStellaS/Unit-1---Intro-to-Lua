@@ -53,7 +53,7 @@ end
 
 -- This function calls the PopUp function after 3 seconds
 function PopUpDelay( )
-	timer.performWithDelay( 1000, PopUp )
+	timer.performWithDelay( 2000, PopUp )
 end
 
 -- This function makes the mole invisible and then calls the PopUpDelay functions
@@ -63,7 +63,7 @@ function Hide( )
 	mole.isVisible = false
 
 	-- add timerWithDelay
-	timer.performWithDelay( 1000, PopUpDelay )	
+	timer.performWithDelay( 2000, PopUpDelay )	
 end
 
 -- This function starts the game 
