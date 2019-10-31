@@ -48,7 +48,7 @@ function PopUp( )
  	mole.isVisible = true
 
  	-- add timerWithDelay
- 	timer.performWithDelay( 500, Hide)
+ 	timer.performWithDelay( 1000, Hide)
 end 
 
 -- This function calls the PopUp function after 3 seconds

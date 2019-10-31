@@ -11,7 +11,7 @@
 display.setStatusBar(display.HiddenStatusBar)
 
 -- sets the background colour
-display.setDefault("background",108/255, 255/255, 153/255)
+display.setDefault("background",204/255, 204/255, 153/255)
 
 ---------------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
@@ -281,7 +281,7 @@ local function NumericFieldListener( event )
     			incorrectObject.isVisible = false
     			questionObject.isVisible = false
     			numericField.isVisible = false
-				display.lostGame = display.newText("Sorry, you lost!", 500, 200, nil, 75)
+				display.lostGame = display.newText("Sorry, you lost!", display.contentWidth/2, display.contentHeight/2, nil, 75)
     			display.lostGame:setTextColor(255/255, 102/255, 102/255)
 				lostGameSoundChannel = audio.play(lostGameSound)
 
@@ -302,7 +302,7 @@ local function NumericFieldListener( event )
 
 
 			-- add text that say end game
-			display.wonGame = display.newText("Yay, you won!", display.contentWidth/2, display.contentHeight*2/3, nil, 75)
+			display.wonGame = display.newText("Yay, you won!", display.contentWidth/2, display.contentHeight/2, nil, 75)
     		display.wonGame:setTextColor(255/255, 102/255, 102/255)	   
 			
     		incorrectPointsText.isVisible = false
